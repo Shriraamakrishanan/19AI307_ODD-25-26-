@@ -1,149 +1,108 @@
-# Ex.No:4(D) DESIGN PATTERN - ABSTRACT FACTORY
+# Ex.No:4(D) DESIGN PATTERN -- ABSTRACT FACTORY
 
 ## QUESTION:
-You’re creating a cross-platform UI tool using the Abstract Factory pattern. Implement factories to create Button and Checkbox for "dark" and "light" themes. Let the user choose the theme, then generate UI components and display their types.
+
+Create a program that sends different types of notifications: "email", "sms", and "push". Use the Factory Pattern to generate the appropriate notification sender and call its notifyUser() method.
 
 ## AIM:
-To implement the **Abstract Factory Design Pattern** in Java by creating UI components (Buttons and Checkboxes) for two different themes—Dark and Light.  
-Based on user input, the appropriate factory should generate the correct themed UI elements.
+
+To develop a Java program that uses the Factory Pattern to generate different types of notifications—Email, SMS, and Push—and call the appropriate notifyUser() method based on user input.
 
 ## ALGORITHM :
-1. Define two interfaces:
-   - `Button` with method `render()`
-   - `Checkbox` with method `render()`
-2. Create concrete classes for **Dark** and **Light** themes:
-   - `DarkButton`, `LightButton`
-   - `DarkCheckbox`, `LightCheckbox`
-3. Define the `UIFactory` interface with:
-   - `createButton()`
-   - `createCheckbox()`
-4. Create concrete factories:
-   - `DarkThemeFactory` implements `UIFactory`
-     - Returns dark-themed button and checkbox
-   - `LightThemeFactory` implements `UIFactory`
-     - Returns light-themed button and checkbox
-5. In the `main` method:
-   - Read the theme name from user input.
-   - If theme is `"dark"` → use `DarkThemeFactory`
-   - If theme is `"light"` → use `LightThemeFactory`
-   - Otherwise print `"Invalid theme"` and exit.
-6. Use the chosen factory to:
-   - Create a button and render it.
-   - Create a checkbox and render it.
-7. End the program.
+
+Define a Notification interface with a method notifyUser().
+
+Implement three classes EmailNotification, SMSNotification, and PushNotification, each overriding notifyUser() with specific behavior.
+
+Create a NotificationFactory class containing a method createNotification(String type) that:
+
+Returns an EmailNotification object when type is "email".
+
+Returns an SMSNotification object when type is "sms".
+
+Returns a PushNotification object when type is "push".
+
+Returns null for invalid types.
+
+Create a NotificationFactory object.
+
+Read user input in a loop until "exit" is entered.
+
+Use the factory to create the correct notification object.
+
+If the object is valid, call notifyUser(); otherwise print an error message.
+
+Close the scanner after exiting the loop.
+
+
 
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Abstract Factory Pattern using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
 ## SOURCE CODE:
-```
-import java.util.Scanner;
 
-interface Button
-{ 
-    void render();
-}
-interface Checkbox 
-{ 
-    void render();
-}
-
-class DarkButton implements Button 
-{
-    public void render()
-    { 
-        System.out.println("Dark Button created"); 
+    import java.util.Scanner;
+    
+    interface Notification {
+        void notifyUser();
     }
-}
-
-class LightButton implements Button 
-{
-    public void render() 
-    {
-        System.out.println("Light Button created"); 
-    }
-}
-
-class DarkCheckbox implements Checkbox
-{
-    public void render() 
-    { 
-        System.out.println("Dark Checkbox created"); 
-    }
-}
-
-class LightCheckbox implements Checkbox
-{
-    public void render() 
-    { 
-        System.out.println("Light Checkbox created");
-    }
-}
-
-interface UIFactory 
-{
-    Button createButton();
-    Checkbox createCheckbox();
-}
-
-class DarkThemeFactory implements UIFactory
-{
-    public Button createButton()
-    {
-        return new DarkButton(); 
-    }
-    public Checkbox createCheckbox() 
-    { 
-        return new DarkCheckbox();
-    }
-}
-
-class LightThemeFactory implements UIFactory 
-{
-    public Button createButton() 
-    {
-        return new LightButton();
-    }
-    public Checkbox createCheckbox() 
-    {
-        return new LightCheckbox(); 
-    }
-}
-
-public class Main 
-{
-    public static void main(String[] args)
-    {
-        Scanner scanner = new Scanner(System.in);
-        String theme = scanner.nextLine().toLowerCase();
-        UIFactory factory;
-        if (theme.equals("dark")) factory = new DarkThemeFactory();
-        else if (theme.equals("light")) factory = new LightThemeFactory();
-        else
-        {
-            System.out.println("Invalid theme");
-            return;
+    
+    class EmailNotification implements Notification {
+        public void notifyUser() {
+            System.out.println("Sending Email Notification");
         }
-        factory.createButton().render();
-        factory.createCheckbox().render();
     }
-}
-```
+    
+    class SMSNotification implements Notification {
+        public void notifyUser() {
+            System.out.println("Sending SMS Notification");
+        }
+    }
+    
+    class PushNotification implements Notification {
+        public void notifyUser() {
+            System.out.println("Sending Push Notification");
+        }
+    }
+    
+    class NotificationFactory {
+        public Notification createNotification(String type) {
+            if (type == null) return null;
+            if (type.equalsIgnoreCase("email")) return new EmailNotification();
+            else if (type.equalsIgnoreCase("sms")) return new SMSNotification();
+            else if (type.equalsIgnoreCase("push")) return new PushNotification();
+            return null;
+        }
+    }
+    
+    public class Main {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            NotificationFactory factory = new NotificationFactory();
+            while (true) {
+                String input = sc.nextLine();
+                if (input.equalsIgnoreCase("exit")) break;
+                Notification n = factory.createNotification(input);
+                if (n != null) n.notifyUser();
+                else System.out.println("Invalid notification type: " + input);
+            }
+            sc.close();
+        }
+    }
+
+
 
 ## OUTPUT:
-<img width="692" height="278" alt="image" src="https://github.com/user-attachments/assets/cd0411f1-afc3-48cb-a31d-b10a027d9ae3" />
+
+<img width="1007" height="417" alt="image" src="https://github.com/user-attachments/assets/a2f4fb47-6a7f-417d-a5a9-ffcee9e08641" />
+
 
 ## RESULT:
-The program successfully demonstrates the **Abstract Factory Pattern** by creating theme-specific UI components.  
-Based on user input, the correct factory is selected, and it generates:
+Therefore the program successfully creates and sends the appropriate notification type using the Factory Pattern.
 
-- A *Dark Button* and *Dark Checkbox* **or**
-- A *Light Button* and *Light Checkbox*
-
-Both components are rendered in the output according to the selected theme.

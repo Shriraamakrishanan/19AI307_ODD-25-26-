@@ -1,93 +1,99 @@
 # Ex.No:3(b) POLYMORPHISM
 
-Write a Java program demonstrating method overriding. Create a class Animal with a method sound(). Subclass it as Dog, Cat, Cow, each overriding the sound() method.## QUESTION:
+## QUESTION:
 
+Write a Java program to create a class Vehicle with a method called speedUp(). Create two subclasses Car and Bicycle. Override the speedUp() method in each subclass to increase the vehicle's speed differently.
 
 ## AIM:
-To write a Java program that demonstrates method overriding using inheritance and polymorphism.
+
+To create a Java program demonstrating method overriding by defining a base class Vehicle with a speedUp() method and overriding it in subclasses Car and Bicycle to increase speed differently.
+
 
 ## ALGORITHM :
-1.	Start the program.
-2.	Import the necessary package 'java.util'
-3.	Override the sound() method in each subclass to print specific sounds.
-4.	In main(), use an Animal reference to point to each subclass object.
-5.	Call the sound() method to demonstrate runtime polymorphism.
 
+Create a parent class Vehicle with an integer variable speed and a method speedUp(int increment) that increases speed normally.
 
+Create a subclass Car that overrides speedUp() to increase speed by double the increment.
 
+Create a subclass Bicycle that overrides speedUp() to increase speed normally (same as parent but customized message).
+
+Read vehicle type and increment value from user.
+
+Based on the type, create an object of Car, Bicycle, or Vehicle.
+
+Call the speedUp(increment) method to show polymorphic behavior.
 
 
 
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Polymorphism using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
 ## SOURCE CODE:
-```java
-import java.util.Scanner;
 
-class Animal {
-    void sound() {
-        System.out.println("Unknown animal");
-    }
-}
-
-class Dog extends Animal {
-    @Override
-    void sound() {
-        System.out.println("Dog barks");
-    }
-}
-
-class Cat extends Animal {
-    @Override
-    void sound() {
-        System.out.println("Cat meows");
-    }
-}
-
-class Cow extends Animal {
-    @Override
-    void sound() {
-        System.out.println("Cow moos");
-    }
-}
-
-public class prog {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        while (sc.hasNextLine()) {
-            String input = sc.nextLine().trim();
-            if (input.isEmpty()) continue;
-
-            Animal a;
-            switch(input.toLowerCase()) {
-                case "dog": a = new Dog(); break;
-                case "cat": a = new Cat(); break;
-                case "cow": a = new Cow(); break;
-                default: a = new Animal();
-            }
-            a.sound();
+    import java.util.Scanner;
+    
+    // Parent class
+    class Vehicle {
+        int speed = 0;
+    
+        void speedUp(int increment) {
+            speed += increment;
+            System.out.println("Vehicle speed increased to: " + speed + " km/h");
         }
-        sc.close();
     }
-}
-```
-
-
+    
+    
+    class Car extends Vehicle {
+        @Override
+        void speedUp(int increment) {
+            speed += increment * 2;
+            System.out.println("Car speed increased to: " + speed + " km/h");
+        }
+    }
+    
+    
+    class Bicycle extends Vehicle {
+        @Override
+        void speedUp(int increment) {
+            speed += increment;
+            System.out.println("Bicycle speed increased to: " + speed + " km/h");
+        }
+    }
+    
+    
+    public class TestVehicles {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            String type = sc.nextLine().toLowerCase();
+            int increment = sc.nextInt();
+    
+            Vehicle vehicle;
+            if (type.equals("car")) {
+                vehicle = new Car();
+            } else if (type.equals("bicycle")) {
+                vehicle = new Bicycle();
+            } else {
+                vehicle = new Vehicle();
+            }
+    
+            vehicle.speedUp(increment);
+        }
+    }
 
 
 
 
 ## OUTPUT:
-<img width="1215" height="500" alt="image" src="https://github.com/user-attachments/assets/b8a9e748-162e-4206-8746-d2a053094f1e" />
 
+<img width="1002" height="445" alt="image" src="https://github.com/user-attachments/assets/8bf1c761-1f82-45af-926c-9f1c8371473f" />
 
 
 ## RESULT:
-The program successfully demonstrates method overriding, showing different behaviors of the sound() method for different animal subclasses.
+Therefore the program successfully demonstrates method overriding by applying different speed increase behaviors for car and bicycle.
+

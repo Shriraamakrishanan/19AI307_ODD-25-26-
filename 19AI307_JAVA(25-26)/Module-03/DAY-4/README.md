@@ -1,99 +1,141 @@
 # Ex.No:3(D)    INTERFACE 
 
 ## QUESTION:
-You are programming bots that analyze weather data. Each bot must implement a common interface and give a prediction.
 
-Bot Types:
+You’re developing a multi-console gaming platform that supports different controllers. Each controller has its own way of mapping buttons for actions like Jump, Shoot, and Pause.
 
-SunBot: Predicts "HOT" if temperature > 30, else "MODERATE".
+To unify this behavior, you're asked to design a system using Java Interfaces. The interface will standardize the controls, and each controller will implement them differently.
 
-RainBot: Predicts "COLD" if temperature < 20, else "WARM".
+Your Task: Create an interface GameController with methods:
 
-Input:
+jump() shoot() pause() Implement three controller types:
 
-temperature botType (1 for SunBot, 2 for RainBot)Output: Prediction as a string.
+PlayBoxController XCubeController RetroFunController
 
 ## AIM:
-To implement weather prediction using interfaces with two bots — SunBot and RainBot.
+
+To design a unified controller system using Java Interfaces where different gaming consoles implement their own button mappings for actions like Jump, Shoot, and Pause.
 
 ## ALGORITHM :
-1.	Start the program.
-2.	Import the necessary package 'java.util'
-3.	Take temperature and botType as input.
-4.	Use the chosen bot to call predict().
-5.	Display the prediction.
 
+Define an interface GameController with methods :jump(),shoot(),pause()
 
+Create class PlayBoxController implementing the interface and defining console-specific button actions.
 
+Create class XCubeController implementing the interface with its own button mapping.
+
+Create class RetroFunController implementing the interface using classic button controls.
+
+Create one controller object at a time.
+
+Call the three methods (jump, shoot, pause) to demonstrate polymorphism.
 
 
 
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Interface using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
 ## SOURCE CODE:
-```java
-import java.util.Scanner;
+```
 
-interface WeatherBot {
-    String predict(int temperature);
+import java.util.*;
+
+interface GameController {
+    void jump();
+    void shoot();
+    void pause();
 }
 
-class SunBot implements WeatherBot {
-    public String predict(int temperature) {
-        if (temperature > 30) {
-            return "HOT";
-        } else {
-            return "MODERATE";
-        }
+class PlayBoxController implements GameController {
+    public void jump() {
+        System.out.println("PlayBox: Press X to Jump!");
+    }
+    public void shoot() {
+        System.out.println("PlayBox: Press R2 to Shoot!");
+    }
+    public void pause() {
+        System.out.println("PlayBox: Press Start to Pause.");
     }
 }
 
-class RainBot implements WeatherBot {
-    public String predict(int temperature) {
-        if (temperature < 20) {
-            return "COLD";
-        } else {
-            return "WARM";
-        }
+class XCubeController implements GameController {
+    public void jump() {
+        System.out.println("X-Cube: Press A to Jump!");
+    }
+    public void shoot() {
+        System.out.println("X-Cube: Press RT to Shoot!");
+    }
+    public void pause() {
+        System.out.println("X-Cube: Press Menu to Pause.");
     }
 }
 
-public class Main {
+class RetroFunController implements GameController {
+    public void jump() {
+        System.out.println("RetroFun: Use Up Arrow to Jump!");
+    }
+    public void shoot() {
+        System.out.println("RetroFun: Press B to Shoot!");
+    }
+    public void pause() {
+        System.out.println("RetroFun: Press P to Pause.");
+    }
+}
+
+public class GameInputSimulator {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int temperature = sc.nextInt();
-        int botType = sc.nextInt();
-        WeatherBot bot;
+        String controllerType = sc.nextLine().toLowerCase();
+        String action = sc.nextLine().toLowerCase();
 
-        if (botType == 1) {
-            bot = new SunBot();
-        } else {
-            bot = new RainBot();
+        GameController controller;
+
+        switch (controllerType) {
+            case "playbox":
+                controller = new PlayBoxController();
+                break;
+            case "xcube":
+                controller = new XCubeController();
+                break;
+            case "retro":
+                controller = new RetroFunController();
+                break;
+            default:
+                System.out.println("Unsupported controller!");
+                return;
         }
 
-        System.out.println(bot.predict(temperature));
-        sc.close();
+        switch (action) {
+            case "jump":
+                controller.jump();
+                break;
+            case "shoot":
+                controller.shoot();
+                break;
+            case "pause":
+                controller.pause();
+                break;
+            default:
+                System.out.println("Unknown action!");
+        }
     }
 }
 ```
-
-
-
 
 
 
 
 ## OUTPUT:
-<img width="1148" height="334" alt="image" src="https://github.com/user-attachments/assets/ba1e4fa3-84c0-4da6-8ce9-183fc9094552" />
 
+<img width="911" height="290" alt="image" src="https://github.com/user-attachments/assets/bcc5c23f-44ff-4802-aea2-84e2acfdbfb4" />
 
 
 ## RESULT:
-The program predicts weather conditions using interface implementation and method overriding.
+Therefore the program successfully unifies different gaming controllers using a common interface.
+

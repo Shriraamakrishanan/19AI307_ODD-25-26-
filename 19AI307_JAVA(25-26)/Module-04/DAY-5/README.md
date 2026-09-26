@@ -1,170 +1,120 @@
-# Ex.No:4(E) DESIGN PATTERN  - BEHAVIOUR PATTERN
+# Ex.No:4(D) DESIGN PATTERN  ---- BEHAVIOUR PATTERN
 
 ## QUESTION:
-Create an MVC program for a School System where the DAO stores student info, controller fetches it, and view displays it.
+
+Create a ChatRoom class (mediator) and two users (colleagues) who send and receive messages through it. No direct communication allowed.
 
 ## AIM:
-To implement a simple **Student Management System** using the **MVC (Model–View–Controller)** architecture along with the **DAO (Data Access Object)** pattern, enabling student data storage, retrieval, and display based on roll number.
 
-## ALGORITHM:
-1. **Model Layer (Student Class)**
-   - Create a `Student` class with private attributes:
-     - `name`
-     - `age`
-     - `rollNo`
-   - Provide getter methods for accessing values.
+To Create a ChatRoom class (mediator) and two users (colleagues) who send and receive messages through it. No direct communication allowed.
 
-2. **DAO Layer**
-   - Create a `StudentDAO` interface with methods:
-     - `addStudent(Student student)`
-     - `getStudentByRollNo(String rollNo)`
-   - Implement this interface in `StudentDAOImpl`:
-     - Maintain a `List<Student>` to store student objects.
-     - Add students to the list.
-     - Search for a student by roll number and return the matching object.
 
-3. **View Layer**
-   - Create `StudentView` class with method:
-     - `displayStudent(Student student)`
-   - If student exists, print the details.
-   - If not, display `"Student not found."`
+## ALGORITHM :
 
-4. **Controller Layer**
-   - Create `StudentController` with:
-     - A reference to `StudentDAO`
-     - A reference to `StudentView`
-   - Provide methods:
-     - `addStudent(Student student)` – sends object to DAO
-     - `showStudent(String rollNo)` – retrieves student and passes to view for display
+Create a ChatRoom class that holds a collection of users, registers users using registerUser(), delivers messages using sendMessage(from, to, message).
 
-5. **Main Program**
-   - Create DAO, View, and Controller objects.
-   - Read `n` (number of students).
-   - For each student:
-     - Read name, age, roll number
-     - Add student using controller
-   - Read a roll number to search.
-   - Call `controller.showStudent(rollNo)` to display the result.
-   - End the program.
+Create a User class containing a user name, a reference to the ChatRoom mediator, a send() method that passes messages to the chat room, a receive() method to display incoming messages.
+
+Read two user names and create User objects, automatically registering them with the chat room.
+
+Read the number of chat exchanges.
+
+For each exchange read sender, receiver, and message, call the corresponding user’s send() method.
+
+Ensure all communication happens only through the mediator (ChatRoom), not directly between users.
+
+
+
 
 ## PROGRAM:
-  ```
+ ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Behaviour Pattern using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
 ## SOURCE CODE:
-```
-import java.util.*;
 
-// Model
-class Student {
-    private String name;
-    private int age;
-    private String rollNo;
 
-    public Student(String name, int age, String rollNo) {
-        this.name = name;
-        this.age = age;
-        this.rollNo = rollNo;
-    }
+     import java.util.*;
+     
+     class ChatRoom {
+         private Map<String, User> users = new HashMap<>();
+     
+         public void registerUser(User user) {
+             users.put(user.getName(), user);
+         }
+     
+         public void sendMessage(String from, String to, String message) {
+             User receiver = users.get(to);
+             if (receiver != null) {
+                 receiver.receive(from, message);
+             } else {
+                 System.out.println("User " + to + " not found");
+             }
+         }
+     }
+     
+     class User {
+         private String name;
+         private ChatRoom chatRoom;
+     
+         public User(String name, ChatRoom chatRoom) {
+             this.name = name;
+             this.chatRoom = chatRoom;
+             chatRoom.registerUser(this);
+         }
+     
+         public String getName() {
+             return name;
+         }
+     
+         public void send(String to, String message) {
+             chatRoom.sendMessage(name, to, message);
+         }
+     
+         public void receive(String from, String message) {
+             System.out.println(from + " to " + name + ": " + message);
+         }
+     }
+     
+     public class ChatApp {
+         public static void main(String[] args) {
+             Scanner sc = new Scanner(System.in);
+     
+             ChatRoom room = new ChatRoom();
+             User user1 = new User(sc.nextLine(), room); 
+             User user2 = new User(sc.nextLine(), room);
+     
+             int n = Integer.parseInt(sc.nextLine());
+             for (int i = 0; i < n; i++) {
+                 String sender = sc.nextLine();
+                 String receiver = sc.nextLine();
+                 String message = sc.nextLine();
+     
+                 if (sender.equals(user1.getName())) {
+                     user1.send(receiver, message);
+                 } else if (sender.equals(user2.getName())) {
+                     user2.send(receiver, message);
+                 } else {
+                     System.out.println("Unknown sender");
+                 }
+             }
+     
+             sc.close();
+         }
+     }
 
-    public String getName() { return name; }
-    public int getAge() { return age; }
-    public String getRollNo() { return rollNo; }
-}
 
-// DAO Interface
-interface StudentDAO {
-    void addStudent(Student student);
-    Student getStudentByRollNo(String rollNo);
-}
 
-// DAO Implementation
-class StudentDAOImpl implements StudentDAO {
-    private List<Student> students = new ArrayList<>();
-
-    public void addStudent(Student student) {
-        students.add(student);
-    }
-
-    public Student getStudentByRollNo(String rollNo) {
-        for (Student s : students) {
-            if (s.getRollNo().equalsIgnoreCase(rollNo)) {
-                return s;
-            }
-        }
-        return null;
-    }
-}
-
-// View
-class StudentView {
-    public void displayStudent(Student student) {
-        if (student != null) {
-            System.out.println("Student Details:");
-            System.out.println("Name    : " + student.getName());
-            System.out.println("Age     : " + student.getAge());
-            System.out.println("Roll No : " + student.getRollNo());
-        } else {
-            System.out.println("Student not found.");
-        }
-    }
-}
-
-// Controller
-class StudentController {
-    private StudentDAO dao;
-    private StudentView view;
-
-    public StudentController(StudentDAO dao, StudentView view) {
-        this.dao = dao;
-        this.view = view;
-    }
-
-    public void addStudent(Student student) {
-        dao.addStudent(student);
-    }
-
-    public void showStudent(String rollNo) {
-        Student student = dao.getStudentByRollNo(rollNo);
-        view.displayStudent(student);
-    }
-}
-
-// Main (Test Case)
-public class SchoolSystemMVC {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        StudentDAO dao = new StudentDAOImpl();
-        StudentView view = new StudentView();
-        StudentController controller = new StudentController(dao, view);
-
-        int n = sc.nextInt();
-        sc.nextLine(); // consume newline
-
-        for (int i = 0; i < n; i++) {
-            String name = sc.nextLine();
-            int age = Integer.parseInt(sc.nextLine());
-            String roll = sc.nextLine();
-            controller.addStudent(new Student(name, age, roll));
-        }
-
-        String searchRollNo = sc.nextLine();
-        controller.showStudent(searchRollNo);
-
-        sc.close();
-    }
-}
-```
 
 ## OUTPUT:
-<img width="894" height="808" alt="image" src="https://github.com/user-attachments/assets/3a7fc0f2-8db2-471f-a7c7-94cbc84128cd" />
+
+<img width="1107" height="767" alt="image" src="https://github.com/user-attachments/assets/8f7ff282-ddfe-4f71-9d80-512f9c01a1dd" />
+
 
 ## RESULT:
-The program successfully demonstrates the **MVC + DAO architecture** for managing student data. It stores multiple student records, retrieves a student based on roll number, and displays the result through the view component.
+Therefore the program successfully demonstrates message exchange using the Mediator Pattern, with all user communication routed through the ChatRoom.
 

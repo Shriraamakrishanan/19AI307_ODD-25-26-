@@ -1,52 +1,50 @@
 # Ex.No:1(C) LOOPING STATEMENT
 
 ## QUESTION:
-Construct a right-angled triangle star pattern using for loop.
+Display Factors of a Number
+
 ## AIM:
-To write a Java program using looping statements to print a right-angled triangle star pattern based on user input.
+To write a Java program that reads an integer from the user and displays all the factors of the given number.
+
 
 ## ALGORITHM :
-1.	Start the program.
+1.Start the program and read an integer n from the user.
 
-2.	Import the necessary package 'java.util'
+2.Loop from 1 to n and check if each number i divides n exactly (i.e., n % i == 0).
 
-3. Read the number of rows from the user.
+3.If yes, print i as a factor.
 
-4. Use an outer loop to iterate through each row.
+4.Continue the loop until all factors are printed.
 
-5. Use an inner loop to print stars (*) for each row.
+5.End the program.
 
-6. Move to the next line after printing stars for each row.
 
-7. End the program.
+
 
 
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Looping Statement using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
 ## SOURCE CODE:
-
 ```
-import java.util.*;
-public class TrianglePattern
-{
-    public static void main(String args[])
-    {
-        Scanner sc=new Scanner(System.in);
-        int n=sc.nextInt();
-        for (int i = 1; i <= n; i++) 
-        {         
-            for (int j = 1; j <= i; j++) 
-            {      
-                System.out.print("* ");
+import java.util.Scanner;
+
+public class Factors {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        System.out.print("Factors: ");
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) { 
+                System.out.print(i + " ");
             }
-            System.out.println();              
         }
     }
 }
@@ -55,10 +53,13 @@ public class TrianglePattern
 
 
 
+
+
 ## OUTPUT:
-<img width="399" height="395" alt="image" src="https://github.com/user-attachments/assets/07286d0c-5174-4702-8d58-34b630bd23d6" />
+<img width="783" height="324" alt="image" src="https://github.com/user-attachments/assets/7225925a-ee05-4369-8028-1042574ed479" />
+
 
 
 
 ## RESULT:
-Thus, the Java program using looping statements to print a right-angled triangle star pattern was successfully written, executed, and verified.
+Therefore, the program successfully reads a number from the user and computes its factors.

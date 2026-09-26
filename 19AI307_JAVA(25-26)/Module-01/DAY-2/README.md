@@ -1,28 +1,33 @@
 # Ex.No:1(B) CONDITIONAL STATEMENT
 
 ## QUESTION:
-A dragon wakes based on temperature:
+A pirate ship has a code lock that only opens if:
 
-If temperature < 0, it hibernates. If 0 ≤ temp ≤ 20, it snoozes. If 21 ≤ temp ≤ 35, it wakes. If temp > 35, it gets angry.
+1)The input code is even, and
 
-Write a java program to get the user input for temperature and display appropriate output.
+2)If it is less than 100, say "Weak Code".
 
-Example Input: -5
+3)If it is between 100 and 999, say "Strong Code".
 
-Result : Hibernating
+4)If the code is odd, deny access.
+
 
 ## AIM:
-To write a java program to get the user input for temperature and display appropriate output.
+To write a Java program that accepts a code number and determines the security level based on the given conditions:
+
+If the code is even and less than 100 → Display "Weak Code"
+If the code is even and between 100 and 999 → Display "Strong Code"
+Otherwise → Display "Access Denied"
+
 
 ## ALGORITHM :
-1.Start the program.
-2.Import the necessary package 'java.util'
-3.Create a Scanner object to read input from the user.
-4.Read an integer value and store it in the variable temp.
-5.Check if temp < 0 : If true, print "Hibernating".
-6.Else if temp is between 0 and 20 (inclusive) : Print "Snoozing".
-7.Else if temp is between 21 and 35 (inclusive): Print "Awake".
-8.Else (i.e., temp > 35): Print "Angry".
+1.	Start the program.
+2.	Import the necessary package 'java.util'
+3.	Read an integer value from the user and store it in variable 'code'.
+4.Check if 'code' is even (code % 2 == 0): a. If 'code' is less than 100: - Print "Weak Code". b. Else if 'code' is between 100 and 999 (inclusive): - 5.Print "Strong Code". c. Else: - Print "Access Denied".
+6.If 'code' is odd:
+7.Print "Access Denied".
+8.End the program.
 
 
 
@@ -31,46 +36,49 @@ To write a java program to get the user input for temperature and display approp
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a conditional statement using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
 ## SOURCE CODE:
 ```
-import java.util.*;
+import java.util.Scanner;
 
-class prog{
-    public static void main(String[] args)
-    {
-        Scanner sc=new Scanner(System.in);
-        int t=sc.nextInt();
-        if (t<0)
-        {
-            System.out.println("Hibernating");
-        }
-        else if(t>=0 && t<=20)
-        {
-            System.out.println("Snoozing");
-        }
-        else if (t>=21 && t<=35)
-        {
-            System.out.println("Awake");
-        }
-        else
-        {
-            System.out.println("Angry");
+public class PirateCodeLock {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int code = sc.nextInt();
+
+        if (code % 2 == 0) {
+            if (code < 100) {
+                System.out.println("Weak Code");
+            } else if (code >= 100 && code <= 999) {
+                System.out.println("Strong Code");
+            }
+            else
+            {
+                System.out.println("Access Denied");
+            }
+        } else {
+            System.out.println("Access Denied");
         }
     }
 }
+
 ```
 
-## OUTPUT:
 
-<img width="382" height="294" alt="image" src="https://github.com/user-attachments/assets/114a7c5e-3f3b-4860-8ab5-8a70a4b8b656" />
+
+
+
+
+## OUTPUT:
+<img width="1253" height="395" alt="image" src="https://github.com/user-attachments/assets/7136cd63-3247-40ff-9535-fd79dbc70465" />
+
 
 
 
 ## RESULT:
-Thus, a java program to get the user input for temperature and display appropriate output is executed successfully.
+Therefore,the program has been executed successfully.

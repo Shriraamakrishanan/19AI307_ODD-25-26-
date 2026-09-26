@@ -1,73 +1,78 @@
 # Ex.No:1(D) ARRAYS
 
 ## QUESTION:
-Write a Java program to find the index of a given element in an array.
+Write a Java program to find the index of a given element in an array
 
 ## AIM:
-To write a Java program that finds the index position of a specified element from a given array.
+To write a Java program that reads an array of integers and finds the index of a given element within the array.
+
 
 ## ALGORITHM :
-1.	Start the program.
-2.	Import the necessary package 'java.util'
-3.	Read the size of the array from the user.
-4. Create an array of the given size.
-5. Read the array elements from the user and store them in the array.
-6. Read the element to be searched.
-7. Traverse the array and compare each element with the search element.
-8. If matched, print the index position and terminate.
-9. If not found, display "Element not found".
-10. Stop the program.
+1.Start the program and read the size of the array n.
+
+2.Read n integer elements and store them in the array a[ ].
+
+3.Read the element x whose index needs to be found.
+
+4.Traverse the array from index 0 to n-1:
+```
+ If a[i] == x, print the index i and terminate the program.
+```
+5.If the loop finishes without a match, print "Element not found".
+
+6.End the program.
+
+
+
 
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Array concept using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
 ## SOURCE CODE:
 ```
-import java.util.*;
-public class Main
-{
-    public static void main(String args[])
-    {
-        Scanner sc=new Scanner(System.in);
-        int n=sc.nextInt();
-        int[] arr=new int[n];
-        for(int i=0;i<n;i++)
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int a[] = new int[n];
+        for (int i = 0; i < n; i++) 
         {
-            arr[i]=sc.nextInt();
-        }
-        int key=sc.nextInt();
-        int index=-1;
-        for(int i=0;i<n;i++)
-        {
-            if(arr[i]==key)
-            {
-                index=i;
-                break;
-            }
+        a[i] = sc.nextInt();
         }
         
-        if(index!=-1)
-        {
+        int x = sc.nextInt();
+        for (int i = 0; i < n; i++) {
+            if (a[i] == x) {
+                System.out.println(i);
+                return;
+            }
             
-            System.out.println(index);
         }
-        else{
-            System.out.println("Element not found");
-        }
+        System.out.println("Element not found");
+        
     }
 }
 ```
 
 
+
+
+
 ## OUTPUT:
-![OUTPUT](https://github.com/ABINAYA-27-76/19AI307_ODD-25-26-/blob/89cca4a56df2cfb4774052b6ca0e2fe103f4875f/19AI307_JAVA(25-26)/Module-01/DAY-4/output.jpg)
+
+<img width="558" height="590" alt="image" src="https://github.com/user-attachments/assets/0fe2a87a-7b7c-49dd-91fa-505dca0a835f" />
+
+
+
 
 ## RESULT:
 
-Thus, the Java program to find the index of a given element in an array was successfully executed.
+Therefore the program successfully searches the array for the given element.

@@ -1,26 +1,24 @@
 # Ex.No:2(C) ACCESS SPECIFIERS
 
 ## QUESTION:
-Write a Java program to create a class called Person with private instance variables name, age. and country. Provide public getter and setter methods to access and modify these variables.
+Write a Java program to create a class called BankAccount with private instance variables accountNumber and balance. Provide public getter and setter methods to access and modify these variables.
 
 ## AIM:
-To write a Java program that defines a class Person with private instance variables name, age, and country, and to provide public getter and setter methods to access and modify these variables.
+To write a Java program that defines a class BankAccount with private attributes accountNumber and balance, and provides public getter and setter methods to access and modify these values.
 
 ## ALGORITHM :
 1.	Start the program.
 2.	Import the necessary package 'java.util'
-3.	Create a class named Person.
-4. Declare private instance variables:</br>
-     - name (String)</br>
-     - age (int)</br>
-     - country (String)</br>
-5. Define public setter methods to assign values to each variable.
-6. Define public getter methods to retrieve the values of each variable.
-7. In the main method:</br>
-     - Create an object of the Person class.</br>
-     - Use setter methods to set name, age, and country.</br>
-     - Use getter methods to display the values.</br>
-8. End the program.
+3.	In the main() method, create a Scanner object to read input from the user.
+
+4.Create an object of the BankAccount class.
+
+5.Read the account number and balance from the user and store them using setter methods.
+
+6.Retrieve and print the stored values using getter methods.
+
+7.Close the Scanner and end the program.
+
 
 
 
@@ -28,58 +26,54 @@ To write a Java program that defines a class Person with private instance variab
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Access Specifiers using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
 ## SOURCE CODE:
-```java
-import java.util.*;
-class Person
-{
-    private String name;
-    private int age;
-    private String country;  
-    public String getName()
-    {
-        return name;
+```
+import java.util.Scanner;
+
+class BankAccount {
+   
+    private String accountNumber;
+    private double balance;
+
+    
+    public String getAccountNumber() {
+        return accountNumber;
     }
-    public void setName(String name)
-    {
-        this.name = name;
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
-    public int getAge()
-    {
-        return age;
+
+   
+    public double getBalance() {
+        return balance;
     }
-    public void setAge(int age)
-    {
-        this.age = age;
-    }
-    public String getCountry()
-    {
-        return country;
-    }
-    public void setCountry(String country)
-    {
-        this.country = country;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }
-public class prog
-{
-    public static void main(String[] args)
-    {
+
+public class prog {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Person obj = new Person();
-        obj.setName(sc.nextLine());
-        obj.setAge(sc.nextInt());
-        obj.setCountry(sc.nextLine());
-        System.out.println("Person 1");
-        System.out.println("Name: " + obj.getName());
-        System.out.println("Age: " + obj.getAge());
-        System.out.println("Country: " + obj.getCountry());
+
+        BankAccount account = new BankAccount();
+
+        String accNo = sc.nextLine();
+        double bal = sc.nextDouble();
+
+        account.setAccountNumber(accNo);
+        account.setBalance(bal);
+
+        System.out.println("Account Number: " + account.getAccountNumber());
+        System.out.println("Balance: " + account.getBalance());
+
+        sc.close();
     }
 }
 ```
@@ -90,9 +84,10 @@ public class prog
 
 
 ## OUTPUT:
-<img width="648" height="365" alt="image" src="https://github.com/user-attachments/assets/f3c1492f-5d1b-46b1-9d1d-726b7822232e" />
+<img width="826" height="465" alt="image" src="https://github.com/user-attachments/assets/1cbfaa27-9ab4-4f96-8a73-ea32d6c4fd3b" />
+
 
 
 
 ## RESULT:
-The program successfully creates a Person class with private variables and accesses them using getter and setter methods, demonstrating encapsulation in Java.
+Therfore the program successfully stores account details using setter methods and retrieves them using getter methods.

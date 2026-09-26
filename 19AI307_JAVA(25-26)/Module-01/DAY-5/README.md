@@ -1,28 +1,32 @@
 # Ex.No:1(E) STRINGS AND MATH FUNCTION
 
 ## QUESTION:
-
-Write a Java program to calculate the power of a given number.
+write a Java program that finds the absolute value of a given number using the Math.abs() method.
 
 
 ## AIM:
-To write a Java program to compute the power of a number using the Math.pow() function in Java.
+To write a Java program that finds the absolute value of a given number using the Math.abs() method.
+
 
 ## ALGORITHM :
 1.	Start the program.
 2.	Import the necessary package 'java.util'
-3.	Read the base value from the user.
-4. Read the exponent value from the user.
-5. Use the Math.pow(base, exponent) function to calculate the power.
-6. Display the result.
-7. Stop the program.
+3.Use the built-in function Math.abs(n) to compute its absolute value.
+
+4.Display the calculated absolute value.
+
+5.End the program.
+
+
+
+
 
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Strings and Math Function using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
@@ -30,24 +34,26 @@ RegisterNumber:  212224220100
 
 ```
 import java.util.*;
-
-public class PowerCalculation {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        double base = sc.nextDouble();
-        double exponent = sc.nextDouble();
-        double result = Math.pow(base, exponent);
-
-        System.out.println(base + " raised to the power of " + exponent + " is: " + result);
+public class demo
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        double n=sc.nextDouble();
+        System.out.println("Absolute value = "+Math.abs(n));
     }
 }
-
 ```
 
+
+
+
+
+
+
 ## OUTPUT:
-![Screenshot 2025-11-17 002442](https://github.com/ABINAYA-27-76/19AI307_ODD-25-26-/blob/48e3a0e8c1eaa81a22e732def7d6ac38d8c6d9ba/19AI307_JAVA(25-26)/Module-01/DAY-5/Screenshot%202025-11-17%20002442.png)
+<img width="744" height="288" alt="image" src="https://github.com/user-attachments/assets/2caf6842-923b-4e7e-bc46-f5c28c172687" />
+
 
 
 ## RESULT:
-Thus, the Java program to calculate the power of a given number using Math function was successfully executed.
-

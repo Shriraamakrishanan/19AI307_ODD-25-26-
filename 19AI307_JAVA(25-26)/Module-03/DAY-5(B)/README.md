@@ -1,69 +1,90 @@
 # Ex.No:3(F) WRAPPER CLASS
 
 ## QUESTION:
-Write a Java program to convert a string to an integer using a wrapper class and perform addition.
+
+Write a Java program to check if a number is prime using wrapper classes.
 
 ## AIM:
-To convert string inputs into integers using the wrapper class and perform addition.
+
+To write a Java program that checks whether a given number is prime by using the Integer wrapper class for parsing and handling the input.
+
 
 ## ALGORITHM :
-1.	Start the program.
-2.	Import the necessary package 'java.util'
-3.	Add the two integers.
-4.	Display the sum.
 
+Read input from the user as a string.
 
+Use the Integer.parseInt() method (wrapper class) to convert the input into an integer.
+
+If parsing fails, catch NumberFormatException and display an error message.
+
+If the number is less than or equal to 1, it is not prime.
+
+If any divisor divides the number completely, mark it as not prime.
+
+After checking, print whether the number is prime or not.
+
+Close the scanner.
 
 
 
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Wrapper Class using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
-
 ```
 
 ## SOURCE CODE:
-```java
-import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        String str1 = scanner.next();
-
-        String str2 = scanner.next();
-
-        scanner.close();
-
-        try {
-            int num1 = Integer.parseInt(str1);
-            int num2 = Integer.parseInt(str2);
-
-
-            int sum = num1 + num2;
-            System.out.println("Sum = " + sum);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please enter a valid number.");
+    
+    import java.util.Scanner;
+    
+    public class PrimeChecker {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+    
+            
+            String input = scanner.nextLine();
+    
+            try {
+                Integer number = Integer.parseInt(input); // Using Integer wrapper class
+    
+                if (number <= 1) {
+                    System.out.println(number + " is not a prime number.");
+                } else {
+                    boolean isPrime = true;
+                    for (int i = 2; i <= Math.sqrt(number); i++) {
+                        if (number % i == 0) {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+    
+                    if (isPrime) {
+                        System.out.println(number + " is a prime number.");
+                    } else {
+                        System.out.println(number + " is not a prime number.");
+                    }
+                }
+    
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+            }
+    
+            scanner.close();
         }
     }
-}
-```
-
-
 
 
 
 
 ## OUTPUT:
 
-<img width="1223" height="414" alt="image" src="https://github.com/user-attachments/assets/e11dbc1a-45c7-4d20-9895-e2a3432588c0" />
-
+<img width="902" height="242" alt="image" src="https://github.com/user-attachments/assets/0a2604dc-000e-428f-83e5-a8a3e9f0948f" />
 
 
 ## RESULT:
-The program successfully converts strings to integers and displays their sum.
+Therefore the program successfully checks if the input number is a prime using the Integer wrapper class.
+

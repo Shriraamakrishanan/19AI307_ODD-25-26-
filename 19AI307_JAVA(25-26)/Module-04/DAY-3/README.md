@@ -1,99 +1,119 @@
 # Ex.No:4(C)  COMPOSITION IN JAVA
 
 ## QUESTION:
-Implement a system where a Library contains multiple Book objects. Each Book is created inside the Library. Books can't exist independently (Composition).
+
+A Department contains Professor objects, but professors can exist independently. If no inputs gets passed, print "No professors assigned."
+
 
 ## AIM:
-To write a Java program that demonstrates **composition**, where a `Library` contains multiple `Book` objects.  
-The program should accept book details from the user, store them inside a `Library` object, and display all stored books.
+
+To write a Java program demonstrating aggregation, where a Department contains multiple Professor objects, but professors can exist independently. If no professors are assigned, the program should display "No professors assigned.".
+
 
 ## ALGORITHM :
-1. Start the program.
-2. Create a `Book` class with:
-   - Private attributes: `title`, `author`
-   - Constructor to initialize them
-   - Method `getDetails()` returning formatted book details
-3. Create a `Library` class that contains:
-   - A `List<Book>` to store books
-   - `addBook(title, author)` method to add a new book to the list
-   - `showBooks()` method to print all books
-4. In the `main` method:
-   - Create a `Scanner` object
-   - Create a `Library` object
-   - Read integer `n` → number of books
-   - Loop `n` times:
-     - Read book title
-     - Read author name
-     - Add the book to the library
-   - Call `library.showBooks()` to display all stored books
-   - Close the scanner
-5. End the program.
+
+Create a Professor class with a name attribute and a constructor to initialize it.
+
+Create a Department class with a department name,an array of Professor objects,a counter to track assigned professors.
+
+Implement addProfessor() to store a professor in the array.
+
+Implement showProfessors() which prints the department name,checks whether any professors are assigned, prints "No professors assigned." if the count is zero, otherwise prints the list of professors.
+
+Read the number of professors.
+
+Create professor objects only if input is provided.
+
+Read department name (with fallback default).
+
+Create a Department object and add professor objects into it.
+
+Call showProfessors() to display the results.
+
 
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Composition Concepts in Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
 ## SOURCE CODE:
-```
-import java.util.*;
 
-public class CompositionExample {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Library library = new Library();
-        int n = sc.nextInt();
-        sc.nextLine();
-        for (int i = 0; i < n; i++) {
-            String title = sc.nextLine();
-            String author = sc.nextLine();
-            library.addBook(title, author);
-        }
-        library.showBooks();
-        sc.close();
-    }
-}
 
-class Book {
-    private String title;
-    private String author;
+     import java.util.*;
+     
+     class Professor {
+         String name;
+         Professor(String name) {
+             this.name = name;
+         }
+     }
+     
+     class Department {
+         String name;
+         Professor[] professors;
+         int count = 0;
+     
+         Department(String name, int n) {
+             this.name = name;
+             professors = new Professor[n];
+         }
+     
+         void addProfessor(Professor p) {
+             professors[count++] = p;
+         }
+     
+         void showProfessors() {
+             System.out.println("Department: " + name);
+             if (count == 0) {
+                 System.out.println("No professors assigned.");
+             } else {
+                 for (int i = 0; i < count; i++) {
+                     System.out.println("- " + professors[i].name);
+                 }
+             }
+         }
+     }
+     
+     public class Main {
+         public static void main(String[] args) {
+             Scanner sc = new Scanner(System.in);
+             int n = sc.nextInt();
+             sc.nextLine(); // consume newline
+     
+             Professor[] profs = new Professor[n];
+             for (int i = 0; i < n; i++) {
+                 if (sc.hasNextLine()) {
+                     profs[i] = new Professor(sc.nextLine());
+                 }
+             }
+     
+             String deptName = "Computer Science";
+             if (sc.hasNextLine()) {
+                 deptName = sc.nextLine().replace("Department: ", "");
+             }
+     
+             Department dept = new Department(deptName, n);
+             for (Professor p : profs) {
+                 dept.addProfessor(p);
+             }
+     
+             dept.showProfessors();
+             sc.close();
+         }
+     }
 
-    Book(String title, String author) {
-        this.title = title;
-        this.author = author;
-    }
 
-    String getDetails() {
-        return "- " + title + " by " + author;
-    }
-}
 
-class Library {
-    private List<Book> books;
-
-    Library() {
-        books = new ArrayList<>();
-    }
-
-    void addBook(String title, String author) {
-        books.add(new Book(title, author));
-    }
-
-    void showBooks() {
-        System.out.println("Books in Library:");
-        for (Book b : books)
-            System.out.println(b.getDetails());
-    }
-}
-```
 
 ## OUTPUT:
-<img width="1065" height="589" alt="image" src="https://github.com/user-attachments/assets/d87a464b-6f1a-4759-a6f7-e74206df169a" />
+
+<img width="892" height="290" alt="image" src="https://github.com/user-attachments/assets/3e10c075-2e8b-4864-9539-f55c47d2aa61" />
+
 
 ## RESULT:
-The program successfully demonstrates **composition** by creating a `Library` object that holds multiple `Book` objects. It reads book details from the user, stores them inside the library, and displays all the books in a structured format.
+Therefore the program successfully demonstrates aggregation by associating independent Professor objects with a Department.
 

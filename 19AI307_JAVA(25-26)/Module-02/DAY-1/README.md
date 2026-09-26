@@ -1,37 +1,41 @@
 # Ex.No:2(A) CLASS AND OBJECT
 
 ## QUESTION:
-Define a class Car with brand (String), color (String), and year (int). Create 2 different objects of Car  Assign values to attributes. Print the details of both cars.import java.util.Scanner;
+Define a class Car with brand (String), color (String), and year (int). Create 2 different objects of Car Assign values to attributes. Print the details of both cars.import java.util.Scanner;
+
 ## AIM:
-To define a class Car with attributes brand, color, and year; create two objects of the class; assign values to their attributes; and print the details of both cars.
+
+
 
 ## ALGORITHM :
-1. Define a class Car with three data members:
+1.	Start the program.
+2.	Import the necessary package 'java.util'
+3.	Define a class Car with three data members:
 
-     String brand
-     String color
-     int year
- and a method printDetails() to display these values.
+4.String brand String color int year and a method printDetails() to display these values.
 
-2. In the main() method, create a Scanner object to read user inputs.
+5.In the main() method, create a Scanner object to read user inputs.
 
-3. Create the first object car1 and read its brand, color, and year from the user.
+6.Create the first object car1 and read its brand, color, and year from the user.
 
-4. Create the second object car2 and read its brand, color, and year.
+7.Create the second object car2 and read its brand, color, and year.
 
-5. Call printDetails() for car1 to display its information.
+8.Call printDetails() for car1 to display its information.
 
-6. Call printDetails() for car2 to display its information.
+9.Call printDetails() for car2 to display its information.
 
-7.Close the scanner and end the program.
+10.Close the scanner and end the program.
+
+
+
 
 
 ## PROGRAM:
  ```
 /*
-Program to implement variables and Operators using Java
+Program to implement a Class and Objects using Java
 Developed by: Shri Raama Krishanan J
-RegisterNumber:  212224220100
+Register Number: 212224220100
 */
 ```
 
@@ -77,10 +81,16 @@ class prog {
 ```
 
 
+
+
+
+
+
 ## OUTPUT:
-<img width="597" height="685" alt="image" src="https://github.com/user-attachments/assets/05ebe553-f279-4f17-b125-675b4afd47bd" />
+<img width="597" height="685" alt="image" src="https://github.com/user-attachments/assets/aec9ee03-2f63-4f0c-bd9a-44c52775c933" />
+
+
 
 
 ## RESULT:
 Therefore,the program successfully creates two Car objects and assigns values to their attributes.
-
